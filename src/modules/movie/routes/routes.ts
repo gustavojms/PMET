@@ -8,8 +8,6 @@ const movieController = new MovieController();
 
 movieRouter.post("/", movieController.create);
 
-movieRouter.get("/", async (request, response) => {
-    const result = await prismaClient.movie.findMany();
+movieRouter.get("/", movieController.read);
 
-    response.json(result);
-});
+movieRouter.delete("/:id", movieController.delete)

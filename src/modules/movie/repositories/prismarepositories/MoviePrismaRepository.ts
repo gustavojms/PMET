@@ -1,4 +1,4 @@
-import { Movie } from '@prisma/client';
+import { Movie, prisma } from '@prisma/client';
 import { prismaClient } from '../../../../database/prismaClient';
 import { InterfaceMovieRepository, MovieCreate, MovieSave } from './../InterfaceMovieRepository';
 
@@ -19,6 +19,24 @@ export class MoviePrismaRepository implements InterfaceMovieRepository {
         const movie = await prismaClient.movie.findFirst({
             where: {
                 name
+            }
+        });
+        return movie;
+    }
+
+    async findAll(): Promise<MovieCreate[]> {
+        const movie = await prismaClient.movie.findMany({
+            // where: {
+            //     name
+            // }
+        });
+        return movie;
+    }
+
+    async delete(id: string): Promise<MovieSave> {
+        const movie = await prismaClient.movie.delete({
+            where: {
+                id
             }
         });
         return movie;

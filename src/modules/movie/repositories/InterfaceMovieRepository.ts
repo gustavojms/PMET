@@ -16,5 +16,6 @@ export type MovieSave = {
 export interface InterfaceMovieRepository {
     save(data: MovieCreate): Promise<MovieSave>;
     findByName(name: String): Promise<MovieCreate | null>;
-    //findAll(): Promise<Movie>;
+    findAll(): Promise<MovieCreate[]>;
+    delete(id: string): Promise<MovieSave>;
 }
