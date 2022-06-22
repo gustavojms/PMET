@@ -1,13 +1,15 @@
 import { MovieController } from './../MovieController';
 import { Router } from "express";
-import { prismaClient } from '../../../database/prismaClient';
 
 export const movieRouter = Router();
 
 const movieController = new MovieController();
 
+movieRouter.get("/:id", movieController.findById);
+movieRouter.get("/", movieController.read);
+
 movieRouter.post("/", movieController.create);
 
-movieRouter.get("/", movieController.read);
+movieRouter.put("/:id", movieController.update);
 
 movieRouter.delete("/:id", movieController.delete)

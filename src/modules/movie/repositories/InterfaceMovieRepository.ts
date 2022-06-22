@@ -18,4 +18,6 @@ export interface InterfaceMovieRepository {
     findByName(name: String): Promise<MovieCreate | null>;
     findAll(): Promise<MovieCreate[]>;
     delete(id: string): Promise<MovieSave>;
+    update(data: MovieCreate): Promise<MovieSave>;
+    findById(id: string): Promise<MovieSave | null>;
 }

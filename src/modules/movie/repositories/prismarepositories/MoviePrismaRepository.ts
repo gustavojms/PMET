@@ -41,4 +41,25 @@ export class MoviePrismaRepository implements InterfaceMovieRepository {
         });
         return movie;
     }
+
+    async update(data: MovieSave): Promise<MovieSave> {
+        const movie = await prismaClient.movie.update({
+            where: {
+                id: data.id
+            },
+            data: {
+                name:  data.name
+            }
+        });
+        return movie;
+    }
+
+    async findById(id: string): Promise<MovieSave | null> { 
+        const movie = await prismaClient.movie.findUnique({
+            where: {
+                id
+            }
+        });
+        return movie;
+    }
 }

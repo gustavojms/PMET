@@ -1,13 +1,13 @@
 import { InterfaceMovieRepository, MovieSave } from "./repositories/InterfaceMovieRepository";
 
-export class MovieDeleteService {
+export class MovieFindService {
     constructor(
         private movieRepository: InterfaceMovieRepository
     ) {}
 
-    async execute(data: MovieSave["id"]): Promise<MovieSave> {
-        const movies = await this.movieRepository.delete(data);
-        
+    async execute(data: MovieSave["id"]): Promise<MovieSave | null> {
+        const movies = await this.movieRepository.findById(data);
+
         return movies;
     }
 }
